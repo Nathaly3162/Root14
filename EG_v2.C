@@ -28,7 +28,7 @@ void rootfuncgenerate(Int_t nEvents, Int_t nTracks, Double_t v2) {
 
     // Create a function for the desired distribution
     TF1* v2Func = new TF1("v2Func", "[0] * (1 + 2 * [1] * cos(2 * (x - 0)))", 0, 6.283);  // 0 to 2π
-    v2Func->SetParameters(1000000, 0.04957);  // Set parameters based on your desired values
+    v2Func->SetParameters(1000000, v2);  // Set parameters based on your desired values
 
     // Loop over the number of events
     for (Int_t n = 0; n < nEvents; n++) {
@@ -62,7 +62,7 @@ void rootfuncgenerate(Int_t nEvents, Int_t nTracks, Double_t v2) {
 
     // Create a 1D function for fitting the generated data
     TF1* fitFunc = new TF1("fitFunc", "[0] * (1 + 2 * [1] * cos(2 * (x - 0)))", 0, 6.283);  // 0 to 2π
-    fitFunc->SetParameters(1000000, 0.04957);  // Set parameters based on your desired values
+    fitFunc->SetParameters(1000000, v2);  // Set parameters based on your desired values
     fitFunc->SetLineColor(kRed);
     hPhi->Fit(fitFunc);
 
